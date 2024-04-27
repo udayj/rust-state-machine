@@ -1,6 +1,7 @@
 mod balances;
 mod support;
 mod system;
+mod proof_of_existence;
 
 use types::{AccountId, Balance};
 
@@ -18,15 +19,13 @@ mod types {
 	pub type Extrinsic = support::Extrinsic<AccountId, RuntimeCall>;
 	pub type Header = support::Header<BlockNumber>;
 	pub type Block = support::Block<Header,Extrinsic>;
-	/* TODO: Define a concrete `Extrinsic` type using `AccountId` and `RuntimeCall`. */
-	/* TODO: Define a concrete `Header` type using `BlockNumber`. */
-	/* TODO: Define a concrete `Block` type using `Header` and `Extrinsic`. */
+	
 }
 
 // These are all the calls which are exposed to the world.
 // Note that it is just an accumulation of the calls exposed by each module.
 pub enum RuntimeCall {
-	// TODO: Not implemented yet.
+	
 	Balances(balances::Call<Runtime>)
 }
 
@@ -73,7 +72,7 @@ impl Runtime {
 impl crate::support::Dispatch for Runtime {
 	type Caller = <Runtime as system::Config>::AccountId;
 	type Call = RuntimeCall;
-	// Dispatch a call on behalf of a caller. Increments the caller's nonce.
+	// Dispatch a call on behalf of a caller.
 	//
 	// Dispatch allows us to identify which underlying module call we want to execute.
 	// Note that we extract the `caller` from the extrinsic, and use that information
